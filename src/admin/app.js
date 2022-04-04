@@ -12,7 +12,7 @@ export default {
     },
     theme: {
       colors: {
-        primary100: '#c4f5d1',
+        primary100: '#d7fae0',
         primary200: '#a6e3b7',
         primary500: '#0e762b',
         primary600: '#0f5b1f',
