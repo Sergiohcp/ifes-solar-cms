@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    container_name: ifes_solar_postgres
+
+    environment:
+      POSTGRES_USER: "ifes-solar"
+      POSTGRES_PASSWORD: "ifes"
+      POSTGRES_DB: "ifes-solar-cms"
+
+    ports:
+      - "5432:5432"
