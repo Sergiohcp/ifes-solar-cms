@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "panels",
+  "info": {
+    "singularName": "panel",
+    "pluralName": "panels",
+    "displayName": "Panel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "producer_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "producer": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "decimal"
+    },
+    "power": {
+      "type": "integer"
+    },
+    "efficiency": {
+      "type": "decimal"
+    },
+    "area": {
+      "type": "decimal"
+    },
+    "ptc": {
+      "type": "decimal"
+    },
+    "datasheet": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
