@@ -1,6 +1,7 @@
 'use strict';
 
-const { energyEquation } = require('../../utils/calculations');
+const { getIncidences, getGeneratedEnergy } = require('../../utils/calculations');
+const { months } = require('../../utils/month');
 
 /**
  * panel service.
@@ -13,9 +14,19 @@ module.exports = createCoreService('api::panel.panel', ({ strapi }) =>  ({
 
         const panelFound = await strapi.entityService.findOne('api::panel.panel', id);
 
-        const energy = energyEquation()
+        const incidences = getIncidences(latitude, longitude)
+        const energy = {
+            anual: getGeneratedEnergy(incidences.anual, panelFound.area, panelFound.efficiency, panelFound.ptc, panelFound.temperature)
+        }
+        for (var i = 0; i < 12; i++) {
+            energy[months[i]] = getGeneratedEnergy(incidences[months[i]], panelFound.area, panelFound.efficiency, panelFound.ptc, panelFound.temperature)
+        }
 
-        return energy
+        return {
+            latitude,
+            longitude,
+            energy
+        }
     },
 }));
   

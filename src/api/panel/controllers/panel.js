@@ -6,6 +6,14 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
+function error(ctx) {
+  ctx.response.status = 400;
+  return {
+    status: 400,
+    message: "Erro ao realizar requisicao"
+  }
+}
+
 module.exports = createCoreController('api::panel.panel', ({ strapi }) => ({
   async find() {
 
@@ -26,23 +34,16 @@ module.exports = createCoreController('api::panel.panel', ({ strapi }) => ({
     const { id, latitude, longitude } = ctx.request.body
 
     if (!ctx.request.body || !id || !latitude || !longitude) {
-      ctx.response.status = 400;
-      return {
-        status: 400,
-        message: "Erro ao realizar requisicao"
-      }
+      return error(ctx)
     }
 
     try {
-      const generatedEnergy = await strapi.service('api::panel.panel').generateEnergy(id, latitude, longitude);
+      const energy = await strapi.service('api::panel.panel').generateEnergy(id, latitude, longitude);
       return {
-        data: generatedEnergy
+        data: energy
       }
     } catch (err) {
-      return {
-        status: 400,
-        message: "Erro ao realizar requisicao"
-      }
+      return error(ctx)
     }
   },
   }));
