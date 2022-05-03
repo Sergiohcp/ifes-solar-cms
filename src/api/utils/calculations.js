@@ -19,7 +19,7 @@ function findLocation (latitude, longitude, item) {
     return verifyCoordinate(latitude, item.latitude) && verifyCoordinate(longitude, item.longitude)
 }
 
-function getIncidences(latitude, longitude) {
+function getIncidence(latitude, longitude) {
     const range = globalHorizontalIncidence.filter(item => findLocation(latitude, longitude, item))
     return range.find(item => !!item)
 }
@@ -31,7 +31,12 @@ function getGeneratedEnergy(incidence, area, efficiency, ptc, temperature) {
     return energy / 1000
 }
 
+function getRequiredPanels(consumptionPerMonth, energyPerMonth) {
+    return Math.ceil(consumptionPerMonth / energyPerMonth)
+}
+
 module.exports = {
-    getIncidences,
-    getGeneratedEnergy
+    getIncidence,
+    getGeneratedEnergy,
+    getRequiredPanels
 }

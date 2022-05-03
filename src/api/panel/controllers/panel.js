@@ -1,5 +1,7 @@
 'use strict';
 
+const { months } = require('../../utils/month');
+
 /**
  *  panel controller
  */
@@ -41,6 +43,28 @@ module.exports = createCoreController('api::panel.panel', ({ strapi }) => ({
       const energy = await strapi.service('api::panel.panel').generateEnergy(id, latitude, longitude);
       return {
         data: energy
+      }
+    } catch (err) {
+      return error(ctx)
+    }
+  },
+  async bestPanels(ctx) {
+    
+    const { consumption, latitude, longitude } = ctx.request.body
+    
+    let hasUndefinedConsumption = false;
+    for (var i = 0; i < 12; i++) {
+      if (typeof consumption[months[i]] !== 'number') hasUndefinedConsumption = true
+  }
+
+    if (!ctx.request.body || !consumption || hasUndefinedConsumption || !latitude || !longitude) {
+      return error(ctx)
+    }
+
+    try {
+      const bestPanels = await strapi.service('api::panel.panel').bestPanels(consumption, latitude, longitude);
+      return {
+        data: bestPanels
       }
     } catch (err) {
       return error(ctx)
