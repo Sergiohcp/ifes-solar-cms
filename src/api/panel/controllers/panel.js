@@ -31,14 +31,14 @@ module.exports = createCoreController('api::panel.panel', ({ strapi }) => ({
   },
   async generateEnergy(ctx) {
     
-    const { id, latitude, longitude } = ctx.request.body
+    const { id, latitude, longitude, area } = ctx.request.body
 
-    if (!ctx.request.body || !id || !latitude || !longitude) {
+    if (!ctx.request.body || !id || !latitude || !longitude || !area) {
       return error(ctx)
     }
 
     try {
-      const energy = await strapi.service('api::panel.panel').generateEnergy(id, latitude, longitude);
+      const energy = await strapi.service('api::panel.panel').generateEnergy(id, latitude, longitude, area);
       return {
         data: energy
       }

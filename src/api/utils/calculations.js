@@ -33,6 +33,5 @@ function getGeneratedEnergy(incidence, area, efficiency, ptc, temperature) {
 
 module.exports = {
     getIncidence,
-    getGeneratedEnergy,
-    getRequiredPanels
+    getGeneratedEnergy
 }
