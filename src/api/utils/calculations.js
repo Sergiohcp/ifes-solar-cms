@@ -31,10 +31,6 @@ function getGeneratedEnergy(incidence, area, efficiency, ptc, temperature) {
     return energy / 1000
 }
 
-function getRequiredPanels(consumptionPerMonth, energyPerMonth) {
-    return Math.ceil(consumptionPerMonth / energyPerMonth)
-}
-
 module.exports = {
     getIncidence,
     getGeneratedEnergy,

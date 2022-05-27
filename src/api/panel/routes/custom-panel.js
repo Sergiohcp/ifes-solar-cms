@@ -8,13 +8,5 @@ module.exports = {
             auth: false,
         },
       },
-      {
-        method: 'POST',
-        path: '/panel/best-panels',
-        handler: 'panel.bestPanels',
-        config: {
-            auth: false,
-        },
-      },
     ],
   };
