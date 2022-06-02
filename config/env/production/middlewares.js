@@ -15,8 +15,8 @@ module.exports = [
           useDefaults: true,
           directives: {
             'connect-src': ["'self'", 'https:'],
-            'img-src': ["'self'", 'data:', 'blob:', `${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com`],
-            'media-src': ["'self'", 'data:', 'blob:', `${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com`],
+            'img-src': ["'self'", 'data:', 'blob:', `${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com`],
+            'media-src': ["'self'", 'data:', 'blob:', `${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com`],
             upgradeInsecureRequests: null,
           },
         },
